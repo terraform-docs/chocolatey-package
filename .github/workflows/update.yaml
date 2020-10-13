@@ -1,0 +1,20 @@
+name: publish
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Choco help
+      uses: crazy-max/ghaction-chocolatey@v1
+      with:
+        args: -h
