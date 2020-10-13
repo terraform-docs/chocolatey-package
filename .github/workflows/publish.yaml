@@ -19,7 +19,7 @@ jobs:
       with:
         args: pack
 
-    - name: Choco help
+    - name: Choco package
       uses: crazy-max/ghaction-chocolatey@v1
       with:
-        args: -h
+        args: push
