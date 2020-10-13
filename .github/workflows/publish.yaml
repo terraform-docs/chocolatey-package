@@ -18,7 +18,7 @@ jobs:
       with:
         args: pack
 
-    - name: Choco package
+    - name: Choco push
       uses: crazy-max/ghaction-chocolatey@v1
       with:
         args: push --api-key ${{ env.CHOCO_API_TOKEN }}
