@@ -14,4 +14,4 @@ This project was originally developed by [Ilia Lazebnik](https://github.com/DrFa
 
 ## License
 
-Apache version 2.0 License - Copyright (c) 2020 The terraform-docs Authors.
+Apache version 2.0 License - Copyright (c) 2021 The terraform-docs Authors.
