@@ -1,4 +1,4 @@
-# chocolatey-package
+# Chocolatey Package
 
 [Chocolatey](https://chocolatey.org/) sources for [terraform-docs](https://github.com/terraform-docs/terraform-docs).
 
