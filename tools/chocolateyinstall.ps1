@@ -2,8 +2,8 @@ $ErrorActionPreference = 'Stop'
 
 $packageName = 'terraform-docs'
 $toolsPath = Split-Path $MyInvocation.MyCommand.Definition
-$checksum = '14b7016bf00e7f3cfb49a78f393b95ea624fe5f906b68207a19e0f5de55c0190'
-$url = 'https://github.com/terraform-docs/terraform-docs/releases/download/v0.12.0/terraform-docs-v0.12.0-windows-amd64.exe'
+$checksum = '509faab16d1077889a91e898abd9a528bbfc880b31bcb804d884a79048f94171'
+$url = 'https://github.com/terraform-docs/terraform-docs/releases/download/v0.12.1/terraform-docs-v0.12.1-windows-amd64.exe'
 $destination = "$toolsPath\terraform-docs.exe"
 
 Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $destination -Url64bit $url -Checksum64 $checksum -ChecksumType64 sha256
