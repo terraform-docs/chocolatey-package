@@ -44,7 +44,7 @@ This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Refe
     <licenseUrl>https://github.com/terraform-docs/terraform-docs/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/terraform-docs/terraform-docs</projectSourceUrl>
-    <docsUrl>https://github.com/terraform-docs/terraform-docs</docsUrl>
+    <docsUrl>https://terraform-docs.io/user-guide/introduction/</docsUrl>
     <!--<mailingListUrl></mailingListUrl>-->
     <bugTrackerUrl>https://github.com/terraform-docs/terraform-docs/issues</bugTrackerUrl>
     <tags>terraform terraform-docs</tags>
