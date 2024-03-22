@@ -14,12 +14,12 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Choco package
-      uses: crazy-max/ghaction-chocolatey@v1
+      uses: crazy-max/ghaction-chocolatey@v3
       with:
         args: pack
 
     - name: Choco push
-      uses: crazy-max/ghaction-chocolatey@v1
+      uses: crazy-max/ghaction-chocolatey@v3
       with:
         args: push --api-key ${{ env.CHOCO_API_TOKEN }}
       env:
