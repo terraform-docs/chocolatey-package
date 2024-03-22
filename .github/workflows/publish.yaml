@@ -21,6 +21,6 @@ jobs:
     - name: Choco push
       uses: crazy-max/ghaction-chocolatey@v3
       with:
-        args: push --api-key ${{ env.CHOCO_API_TOKEN }}
+        args: push --api-key ${{ env.CHOCO_API_TOKEN }} --source="'https://push.chocolatey.org/'"
       env:
         CHOCO_API_TOKEN: ${{ secrets.CHOCO_API_TOKEN }}
