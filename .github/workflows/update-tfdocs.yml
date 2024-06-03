@@ -1,0 +1,79 @@
+name: update-terraform-docs
+run-name: update terraform-docs version
+
+on:
+  repository_dispatch:
+    types: [trigger-workflow]
+  workflow_dispatch:
+    inputs:
+      current-version:
+        description: "terraform-docs current version"
+        required: true
+        type: string
+      release-version:
+        description: "terraform-docs new release version"
+        required: true
+        type: string
+      release-checksum:
+        description: "terraform-docs sha256 checksum"
+        required: true
+        type: string
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.COMMITTER_TOKEN }}
+
+      - name: Get variables
+        run: |
+          ###################
+          # current version #
+          ###################
+          if [ -n "${{ github.event.client_payload.current-version }}" ]; then
+            current_version="${{ github.event.client_payload.current-version }}"
+          else
+            current_version="${{ inputs.current-version }}"
+          fi
+          echo "current_version=${current_version//v/}" >> "$GITHUB_ENV"
+
+          ###################
+          # release version #
+          ###################
+          if [ -n "${{ github.event.client_payload.release-version }}" ]; then
+            release_version="${{ github.event.client_payload.release-version }}"
+          else
+            release_version="${{ inputs.release-version }}"
+          fi
+          echo "release_version=${release_version//v/}" >> "$GITHUB_ENV"
+
+          ####################
+          # release checksum #
+          ####################
+          if [ -n "${{ github.event.client_payload.release-checksum }}" ]; then
+            echo "checksum=${{ github.event.client_payload.release-checksum }}" >> "$GITHUB_ENV"
+          else
+            echo "checksum=${{ inputs.release-checksum }}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Update to terraform-docs v${{ env.release_version }}
+        run: ./.github/scripts/update-tfdocs.sh "${{ env.current_version }}" "${{ env.release_version }}" "${{ env.checksum }}"
+
+      - name: Push terraform-docs v${{ inputs.release_version }} Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
+        with:
+          file_pattern: "terraform-docs.nuspec tools/chocolateyinstall.ps1"
+          commit_message: "Chocolatey update for terraform-docs version v${{ env.release_version }}"
+          commit_user_name: terraform-docs-bot
+          commit_user_email: bot@terraform-docs.io
+          commit_author: "terraform-docs-bot <bot@terraform-docs.io>"
