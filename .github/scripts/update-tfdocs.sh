@@ -13,8 +13,8 @@ set -o pipefail
 
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-if [ -z "${CURRENT_BRANCH}" ] || [ "${CURRENT_BRANCH}" != "master" ]; then
-    echo "Error: The current branch is '${CURRENT_BRANCH}', switch to 'master' to do the release."
+if [ -z "${CURRENT_BRANCH}" ] || [ "${CURRENT_BRANCH}" != "main" ]; then
+    echo "Error: The current branch is '${CURRENT_BRANCH}', switch to 'main' to do the release."
     exit 1
 fi
 
