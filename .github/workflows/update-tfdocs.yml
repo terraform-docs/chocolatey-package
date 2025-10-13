@@ -68,7 +68,7 @@ jobs:
         run: ./.github/scripts/update-tfdocs.sh "${{ env.current_version }}" "${{ env.release_version }}" "${{ env.checksum }}"
 
       - name: Push terraform-docs v${{ inputs.release_version }} Changes
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         env:
           GITHUB_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
         with:
